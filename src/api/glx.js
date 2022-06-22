@@ -39,3 +39,34 @@ export const getObjects = (objectName) => {
     method: 'get'
   })
 }
+
+export const getObjectById = (objectName, objId) => {
+  return service({
+    url: objectName + '/' + objId,
+    method: 'get'
+  })
+}
+
+export const updateObjectById = (objectName, objId, data) => {
+  return service({
+    url: objectName + '/' + objId,
+    method: 'patch',
+    data: data
+  })
+}
+
+export const deleteObjectById = (objectName, objId, data) => {
+  return service({
+    url: objectName + '/' + objId,
+    method: 'delete',
+    data: data
+  })
+}
+
+export const createObject = (objectName, data) => {
+  return service({
+    url: objectName,
+    method: 'post',
+    data: data
+  })
+}

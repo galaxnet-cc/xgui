@@ -1,8 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import EditView from "../views/EditView.vue";
+import CreateView from "../views/CreateView.vue";
 import { useTargetStore } from '@/stores/target'
-import TargetConfig from "../components/TargetConfig.vue";
-import PhysicalInterface from "../components/PhysicalInterface.vue";
+import TargetConfig from "../components/home/TargetConfig.vue";
+import ObjectList from "../components/home/ObjectList.vue";
+import ObjectEdit from "../components/edit/ObjectEdit.vue";
+import ObjectCreate from "../components/edit/ObjectCreate.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +18,25 @@ const router = createRouter({
       // Add object as children here.
       children: [
         { path: "", component: TargetConfig }, // default tab that config target machine,
-        { path: "/phyif", component: PhysicalInterface },
+        { path: "/objects/:type", component: ObjectList },
+      ],
+    },
+    {
+      path: "/edit",
+      name: "edit",
+      component: EditView,
+      // Add object as children here.
+      children: [
+        { path: "/edit/:type/:id", component: ObjectEdit },
+      ],
+    },
+    {
+      path: "/create",
+      name: "create",
+      component: CreateView,
+      // Add object as children here.
+      children: [
+        { path: "/create/:type", component: ObjectCreate },
       ],
     },
     {
