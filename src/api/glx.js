@@ -2,37 +2,29 @@ import axios from 'axios'
 import { useTargetStore } from '@/stores/target'
 
 // Init baseURL using default value.
-let baseURL = 'http://127.0.0.1:8080/public/v1/config'
-const service = axios.create({
-  baseURL: baseURL,
-  timeout: 5000
-})
+let service = null
 
-
-// http request 拦截器
-service.interceptors.request.use(
-    config => {
-        config.headers = {
-            'Content-Type': 'application/json',
-            ...config.headers
-        }
-        return config
-    },
-    error => {
-        return error
-    }
-)
+const ensureService = () => {
+  if (service === null) {
+    let targetStore = useTargetStore()
+    service = axios.create({
+      baseURL: 'http://' + targetStore.targetIp + ':' + targetStore.targetPort + '/public/v1/config',
+      timeout: 5000
+    })
+  }
+}
 
 export const updateApiEndpoint = () => {
   let targetStore = useTargetStore()
-
-  // Update service baseURL.
-  service.baseURL = 'http://' + targetStore.targetIp + ':' + targetStore.targetPort + '/public/v1/config'
-
-  console.log("api updated to: " + service.baseURL)
+  // Generate a new service instance using new config.
+  service = axios.create({
+    baseURL: 'http://' + targetStore.targetIp + ':' + targetStore.targetPort + '/public/v1/config',
+    timeout: 5000
+  })
 }
 
 export const getObjects = (objectName) => {
+  ensureService()
   return service({
     // turn to plural URL Name
     url: objectName+'s',
@@ -41,6 +33,7 @@ export const getObjects = (objectName) => {
 }
 
 export const getObjectById = (objectName, objId) => {
+  ensureService()
   return service({
     url: objectName + '/' + objId,
     method: 'get'
@@ -48,6 +41,7 @@ export const getObjectById = (objectName, objId) => {
 }
 
 export const updateObjectById = (objectName, objId, data) => {
+  ensureService()
   return service({
     url: objectName + '/' + objId,
     method: 'patch',
@@ -56,6 +50,7 @@ export const updateObjectById = (objectName, objId, data) => {
 }
 
 export const deleteObjectById = (objectName, objId, data) => {
+  ensureService()
   return service({
     url: objectName + '/' + objId,
     method: 'delete',
@@ -64,6 +59,7 @@ export const deleteObjectById = (objectName, objId, data) => {
 }
 
 export const createObject = (objectName, data) => {
+  ensureService()
   return service({
     url: objectName,
     method: 'post',

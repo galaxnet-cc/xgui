@@ -1,21 +1,19 @@
 import { defineStore } from "pinia";
+import { useLocalStorage } from '@vueuse/core'
 
 export const useTargetStore = defineStore({
-  id: "target",
+  id: "targetConfig",
   state: () => ({
-    targetIp: "127.0.0.1",
-    targetPort: 8080,
+    targetIp: window.localStorage.getItem('targetIp') || '127.0.0.1',
+    targetPort: window.localStorage.getItem('targetPort') || '8080',
   }),
-  getters: {
-    targetIp: (state) => state.targetIp,
-    targetPort: (state) => state.targetPort,
-  },
   actions: {
-    setTargetIp(ip) {
-      this.targetIp = ip;
-    },
-    setTargetPort(port) {
-      this.targetPort = port;
-    },
-  },
+    updateTarget(ip, port) {
+      this.targetIp = ip
+      this.targetPort = port
+
+      window.localStorage.setItem('targetIp', ip)
+      window.localStorage.setItem('targetPort', port)
+    }
+  }
 });

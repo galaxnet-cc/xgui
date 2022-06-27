@@ -24,7 +24,7 @@
                 <button
                     type="button"
                     @click="router.go(-1)"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    class="ml-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     返回
                 </button>
             </form>
@@ -53,6 +53,27 @@
      let result = await getObjectById(route.params.type, route.params.id)
      // Clone the original object to exclude it from vue reactive changes.
      origObj = Object.assign({}, result.data.Object)
+     let elemObj = result.data.Object
+     // Fix the nested structure in the result.
+     switch (route.params.type) {
+         case "EdgeRoute":
+             elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
+             if (elemObj.NexthopTunnels.length > 1) {
+                 elemObj.TunnelId2 = elemObj.NexthopTunnels[1].TunnelId
+             }
+             delete elemObj.NexthopTunnels
+             break
+         case "RouteLabelFwdEntry":
+             elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
+             if (elemObj.NexthopTunnels.length > 1) {
+                 elemObj.TunnelId2 = elemObj.NexthopTunnels[1].TunnelId
+             }
+             delete elemObj.NexthopTunnels
+             break
+         default:
+             // regular object, no need to do special handling.
+             break
+     }
      obj.value = result.data
      loaded.value = true
  }
@@ -62,6 +83,44 @@
      let objUpdate = Object.assign({}, obj.value.Object)
      //console.log("before convert, objUpdate is " + JSON.stringify(objUpdate))
      // Use the original object field type to do the conversion if the value is changed to string.
+     // 针对特殊对象进行加工，符合对象模型定义。
+     switch(route.params.type) {
+         case "EdgeRoute":
+             {
+                 let tunnels = []
+                 let tunnel1 = {}
+                 tunnel1.TunnelId = parseInt(objUpdate.TunnelId1, 10)
+                 tunnels.push(tunnel1)
+                 delete objUpdate.TunnelId1
+                 if ("tunnel2" in objUpdate) {
+                     let tunnel2 = {}
+                     tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
+                     tunnels.push(tunnel2)
+                     delete objUpdate.TunnelId2
+                 }
+                 objUpdate.NexthopTunnels = tunnels
+             }
+             break
+         case "RouteLabelFwdEntry":
+             {
+                 let tunnels = []
+                 let tunnel1 = {}
+                 tunnel1.TunnelId = parseInt(objUpdate.TunnelId1, 10)
+                 tunnels.push(tunnel1)
+                 delete objUpdate.TunnelId1
+                 if ("tunnel2" in objUpdate) {
+                     let tunnel2 = {}
+                     tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
+                     tunnels.push(tunnel2)
+                     delete objUpdate.TunnelId2
+                 }
+                 objUpdate.NexthopTunnels = tunnels
+             }
+             break
+         default:
+             break
+     }
+
      for (const prop in origObj) {
          switch (typeof(origObj[prop])) {
              case "number":

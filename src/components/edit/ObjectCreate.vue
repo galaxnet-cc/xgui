@@ -76,7 +76,6 @@
                  RouteProtocol: "overlay",
                  NexthopType: "overlay",
                  RouteLabel: "0x200",
-                 // Tunnel为内嵌结构，需要在提交前特殊处理
                  // 暂时只支持单tunnel配置
                  TunnelId1: 1
              }
@@ -92,6 +91,8 @@
              objTemplate = {
                  RouteLabel: "0x100",
                  // TODO: how to support nexthop tunnel config ???
+                 // 暂时只支持单tunnel配置
+                 TunnelId1: 1,
              }
              break
          case "BusinessPolicy":
@@ -145,11 +146,22 @@
      // 针对特殊对象进行加工，符合对象模型定义。
      switch(route.params.type) {
          case "EdgeRoute":
-             let tunnels = []
-             let tunnel1 = {}
-             tunnel1.TunnelId = objUpdate.TunnelId1
-             tunnels.push(tunnel1)
-             objUpdate.NexthopTunnels = tunnels
+             {
+                 let tunnels = []
+                 let tunnel1 = {}
+                 tunnel1.TunnelId = objUpdate.TunnelId1
+                 tunnels.push(tunnel1)
+                 objUpdate.NexthopTunnels = tunnels
+             }
+             break
+         case "RouteLabelFwdEntry":
+             {
+                 let tunnels = []
+                 let tunnel1 = {}
+                 tunnel1.TunnelId = objUpdate.TunnelId1
+                 tunnels.push(tunnel1)
+                 objUpdate.NexthopTunnels = tunnels
+             }
              break
          default:
              break

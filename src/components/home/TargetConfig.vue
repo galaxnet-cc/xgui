@@ -37,21 +37,17 @@
  import { updateApiEndpoint } from "@/api/glx";
 
 
- let targetIp = ref("")
- let targetPort = ref(0)
-
- // default value.
-     targetIp.value = "127.0.0.1"
- targetPort.value = 8080
-
  const targetStore = useTargetStore();
 
+ let targetIp = ref(targetStore.targetIp)
+ let targetPort = ref(targetStore.targetPort)
+
  const onSubmit = () => {
-     targetStore.setTargetIp(targetIp);
-     targetStore.setTargetPort(targetPort);
+     // Update the store.
+         targetStore.updateTarget(targetIp.value, targetPort.value)
 
      // update the Api endpoint.
-         updateApiEndpoint()
+                     updateApiEndpoint()
  }
 </script>
 
