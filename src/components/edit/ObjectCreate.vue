@@ -71,11 +71,12 @@
              break
          case "EdgeRoute":
              objTemplate = {
-                 VrfName: "default",
+                 Segment: "default",
                  DestPrefix: "8.8.8.8/32",
                  RouteProtocol: "overlay",
                  NexthopType: "overlay",
                  RouteLabel: "0x200",
+                 AdvertiseEnable: false,
                  // 暂时只支持单tunnel配置
                  TunnelId1: 1
              }
@@ -105,6 +106,19 @@
                  SteeringType: 0,
                  SteeringMode: 0,
                  SteeringInterface: "WAN1"
+             }
+             break
+         case "OspfSetting":
+             objTemplate = {
+                 Segment: "default",
+                 OverlayAdvertiseEnable: true,
+                 AreaId1: 1
+             }
+             break
+         case "OspfInterface":
+             objTemplate = {
+                 Interface: "GE1",
+                 AreaId: 1
              }
              break
              // TODO: add firewall rule here
@@ -161,6 +175,15 @@
                  tunnel1.TunnelId = objUpdate.TunnelId1
                  tunnels.push(tunnel1)
                  objUpdate.NexthopTunnels = tunnels
+             }
+             break
+         case "OspfSetting":
+             {
+                 let areas = []
+                 let area1 = {}
+                 area1.AreaId = objUpdate.AreaId1
+                 areas.push(area1)
+                 objUpdate.Areas = areas
              }
              break
          default:
