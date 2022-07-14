@@ -31,7 +31,7 @@
      RouteLabelFwdEntry: "RouteLabelFwdEntry",
      EdgeRoute: "路由",
      BusinessPolicy: "业务策略",
-     Firewall: "防火墙",
+     FirewallRule: "防火墙",
      HostStackDhcp: "DHCP",
      OspfSetting: "OSPF",
      OspfInterface: "OSPF接口"

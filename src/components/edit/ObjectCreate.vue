@@ -121,6 +121,19 @@
                  AreaId: 1
              }
              break
+         case "FirewallRule":
+             objTemplate = {
+                 Name: "fwrule0",
+                 Segment: "default",
+                 Priority: 100,
+                 SourceAddress: "0.0.0.0",
+                 SourceAddressMask: "0.0.0.0",
+                 L4Protocol: 0,
+                 DestAddress: "8.8.8.8",
+                 DestAddressMask: "255.255.255.255",
+                 Action: "Deny"
+             }
+             break
              // TODO: add firewall rule here
          default:
              break
