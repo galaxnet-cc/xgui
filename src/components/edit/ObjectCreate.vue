@@ -134,7 +134,14 @@
                  Action: "Deny"
              }
              break
-             // TODO: add firewall rule here
+         case "OverlayTrafficLimit":
+             objTemplate = {
+                 Segment: "default",
+                 TxLimit: 4294967295,
+                 RxLimit: 4294967295,
+                 TxRxCombined: false
+             }
+             break
          default:
              break
      }

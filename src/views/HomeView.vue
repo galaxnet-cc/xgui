@@ -34,7 +34,8 @@
      FirewallRule: "防火墙",
      HostStackDhcp: "DHCP",
      OspfSetting: "OSPF",
-     OspfInterface: "OSPF接口"
+     OspfInterface: "OSPF接口",
+     OverlayTrafficLimit: "Overlay流量限速",
  }
 
  const getToUrl = (objType) => {
