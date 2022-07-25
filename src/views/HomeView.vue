@@ -25,6 +25,7 @@
      PhysicalInterface: "物理接口",
      LogicalInterface: "逻辑接口",
      Bridge: "网桥",
+     Segment: "网络分段",
      Link: "Link",
      Tunnel: "Tunnel",
      RouteLabelPolicy: "RouteLabelPolicy",

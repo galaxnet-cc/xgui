@@ -54,6 +54,11 @@
                  BviIpAddrWithPrefix: "192.168.2.1/24"
              }
              break
+         case "Segment":
+             objTemplate = {
+                 Id: 1
+             }
+             break
          case "Link":
              objTemplate = {
                  LinkId : 1,
@@ -71,7 +76,7 @@
              break
          case "EdgeRoute":
              objTemplate = {
-                 Segment: "default",
+                 Segment: 0,
                  DestPrefix: "8.8.8.8/32",
                  RouteProtocol: "overlay",
                  NexthopType: "overlay",
@@ -110,7 +115,7 @@
              break
          case "OspfSetting":
              objTemplate = {
-                 Segment: "default",
+                 Segment: 0,
                  OverlayAdvertiseEnable: true,
                  AreaId1: 1
              }
@@ -124,7 +129,7 @@
          case "FirewallRule":
              objTemplate = {
                  Name: "fwrule0",
-                 Segment: "default",
+                 Segment: 0,
                  Priority: 100,
                  SourceAddress: "0.0.0.0",
                  SourceAddressMask: "0.0.0.0",
@@ -136,7 +141,7 @@
              break
          case "OverlayTrafficLimit":
              objTemplate = {
-                 Segment: "default",
+                 Segment: 0,
                  TxLimit: 4294967295,
                  RxLimit: 4294967295,
                  TxRxCombined: false
