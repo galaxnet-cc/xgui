@@ -89,8 +89,7 @@
          case "RouteLabelPolicy":
              objTemplate = {
                  RouteLabel: "0x100",
-                 Type: 0,
-                 TableId: 0
+                 Type: 0
              }
              break
          case "RouteLabelFwdEntry":
