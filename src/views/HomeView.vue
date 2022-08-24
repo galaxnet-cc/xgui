@@ -29,6 +29,7 @@
      Link: "Link",
      Tunnel: "Tunnel",
      RouteLabelPolicy: "RouteLabelPolicy",
+     EdgeRouteLabelFwdEntry: "EdgeRouteLabelFwdEntry",
      RouteLabelFwdEntry: "RouteLabelFwdEntry",
      EdgeRoute: "路由",
      BusinessPolicy: "业务策略",

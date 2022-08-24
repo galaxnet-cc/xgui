@@ -60,12 +60,17 @@
              elemObj.AccIp1 = elemObj.AccIps[0].Ip4Address
              delete elemObj.AccIps
              break
-         case "EdgeRoute":
-             elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
-             if (elemObj.NexthopTunnels.length > 1) {
-                 elemObj.TunnelId2 = elemObj.NexthopTunnels[1].TunnelId
+         case "EdgeRouteLabelFwdEntry":
+             if (elemObj.NexthopTunnels != null) {
+                 elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
+                 if (elemObj.NexthopTunnels.length > 1) {
+                     elemObj.TunnelId2 = elemObj.NexthopTunnels[1].TunnelId
+                 }
+                 delete elemObj.NexthopTunnels
+             } else {
+                 delete elemObj.NexthopTunnels
+                 elemObj.TunnelId1 = "1"
              }
-             delete elemObj.NexthopTunnels
              break
          case "RouteLabelFwdEntry":
              elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
@@ -98,7 +103,7 @@
                  objUpdate.AccIps = accIps
              }
              break
-         case "EdgeRoute":
+         case "EdgeRouteLabelFwdEntry":
              {
                  let tunnels = []
                  let tunnel1 = {}
