@@ -56,7 +56,15 @@
              break
          case "Segment":
              objTemplate = {
-                 Id: 1
+                 Id: 1,
+                 AccEnable: false,
+                 IntEdgeEnable: false
+             }
+             break
+         case "SegmentAccProperties":
+             objTemplate = {
+                 Segment: 0,
+                 AccIp1: "222.222.222.222"
              }
              break
          case "Link":
@@ -82,6 +90,8 @@
                  NexthopType: "overlay",
                  RouteLabel: "0x200",
                  AdvertiseEnable: false,
+                 IsAcc: false,
+                 IsAccReverse: false,
                  // 暂时只支持单tunnel配置
                  TunnelId1: 1
              }
@@ -183,6 +193,15 @@
 
      // 针对特殊对象进行加工，符合对象模型定义。
      switch(route.params.type) {
+         case "SegmentAccProperties":
+             {
+                 let accIps = []
+                 let accIp1 = {}
+                 accIp1.Ip4Address = objUpdate.AccIp1
+                 accIps.push(accIp1)
+                 objUpdate.AccIps = accIps
+             }
+             break
          case "EdgeRoute":
              {
                  let tunnels = []

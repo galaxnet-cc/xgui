@@ -56,6 +56,10 @@
      let elemObj = result.data.Object
      // Fix the nested structure in the result.
      switch (route.params.type) {
+         case "SegmentAccProperties":
+             elemObj.AccIp1 = elemObj.AccIps[0].Ip4Address
+             delete elemObj.AccIps
+             break
          case "EdgeRoute":
              elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
              if (elemObj.NexthopTunnels.length > 1) {
@@ -85,6 +89,15 @@
      // Use the original object field type to do the conversion if the value is changed to string.
      // 针对特殊对象进行加工，符合对象模型定义。
      switch(route.params.type) {
+         case "SegmentAccProperties":
+             {
+                 let accIps = []
+                 let accIp1 = {}
+                 accIp1.Ip4Address = objUpdate.AccIp1
+                 accIps.push(accIp1)
+                 objUpdate.AccIps = accIps
+             }
+             break
          case "EdgeRoute":
              {
                  let tunnels = []

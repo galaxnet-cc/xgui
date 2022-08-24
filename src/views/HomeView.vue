@@ -37,6 +37,7 @@
      OspfSetting: "OSPF",
      OspfInterface: "OSPF接口",
      OverlayTrafficLimit: "Overlay流量限速",
+     SegmentAccProperties: "网络分段加速属性",
  }
 
  const getToUrl = (objType) => {
