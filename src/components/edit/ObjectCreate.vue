@@ -92,14 +92,20 @@
                  AdvertiseEnable: false,
                  IsAcc: false,
                  IsAccReverse: false,
-                 // 暂时只支持单tunnel配置
-                 TunnelId1: 1
              }
              break
          case "RouteLabelPolicy":
              objTemplate = {
                  RouteLabel: "0x100",
                  Type: 0
+             }
+             break
+         case "EdgeRouteLabelFwdEntry":
+             objTemplate = {
+                 RouteLabel: "0x100",
+                 // TODO: how to support nexthop tunnel config ???
+                 // 暂时只支持单tunnel配置
+                 TunnelId1: 1,
              }
              break
          case "RouteLabelFwdEntry":
@@ -202,7 +208,7 @@
                  objUpdate.AccIps = accIps
              }
              break
-         case "EdgeRoute":
+         case "EdgeRouteLabelFwdEntry":
              {
                  let tunnels = []
                  let tunnel1 = {}
