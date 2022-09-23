@@ -125,7 +125,8 @@
                  DirectEnable: true,
                  SteeringType: 0,
                  SteeringMode: 0,
-                 SteeringInterface: "WAN1"
+                 SteeringInterface: "WAN1",
+                 AppId: 65535
              }
              break
          case "OspfSetting":
@@ -146,12 +147,11 @@
                  Name: "fwrule0",
                  Segment: 0,
                  Priority: 100,
-                 SourceAddress: "0.0.0.0",
-                 SourceAddressMask: "0.0.0.0",
+                 SrcAddressWithPrefix: "192.168.88.0/24",
+                 DstAddressWithPrefix: "0.0.0.0/0",
                  L4Protocol: 0,
-                 DestAddress: "8.8.8.8",
-                 DestAddressMask: "255.255.255.255",
-                 Action: "Deny"
+                 Action: "Deny",
+                 AppId: 65535
              }
              break
          case "OverlayTrafficLimit":
@@ -160,6 +160,12 @@
                  TxLimit: 4294967295,
                  RxLimit: 4294967295,
                  TxRxCombined: false
+             }
+             break
+         case "DpiSetting":
+             objTemplate = {
+                 Name: "default",
+                 DpiEnable: true
              }
              break
          default:
