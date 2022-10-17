@@ -72,9 +72,10 @@
                  LinkId : 1,
                  LocalWanName: "WAN1",
                  RemoteIp: "1.1.1.1",
-                 RemotePort: 2288,
+                 //RemotePort: 2288,
                  TunnelId: 1,
-                 RouteLabel: "0xffffffffff"
+                 RouteLabel: "0xffffffffff",
+                 IsTcp: false
              }
              break
          case "Tunnel":
