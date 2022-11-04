@@ -169,6 +169,16 @@
                  DpiEnable: true
              }
              break
+         case "HostStackDhcp":
+             objTemplate = {
+                 Name: "default",
+                 GatewayIP: "192.168.88.1",
+                 StartIP: "192.168.88.100",
+                 EndIP: "192.168.88.200",
+                 NetMask: "255.255.255.0",
+                 LeaseTime: "1h"
+             }
+             break
          default:
              break
      }
