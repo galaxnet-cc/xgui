@@ -54,6 +54,14 @@
                  BviIpAddrWithPrefix: "192.168.2.1/24"
              }
              break
+         case "L3SubInterface":
+             objTemplate = {
+                 PhysicalInterface: "WAN1",
+                 SubId: 100,
+                 Type: "dot1q",
+                 VlanId: 100
+             }
+             break
          case "Segment":
              objTemplate = {
                  Id: 1,

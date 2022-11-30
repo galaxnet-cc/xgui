@@ -23,6 +23,7 @@
 <script setup>
  const objects = {
      PhysicalInterface: "物理接口",
+     L3SubInterface: "三层子接口",
      LogicalInterface: "逻辑接口",
      Bridge: "网桥",
      Segment: "网络分段",
