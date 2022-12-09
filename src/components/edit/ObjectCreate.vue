@@ -88,7 +88,8 @@
              break
          case "Tunnel":
              objTemplate = {
-                 TunnelId: 1
+                 TunnelId: 1,
+                 IsPassive: false
              }
              break
          case "EdgeRoute":
