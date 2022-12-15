@@ -66,13 +66,18 @@
              objTemplate = {
                  Id: 1,
                  AccEnable: false,
-                 IntEdgeEnable: false
+                 IntEdgeEnable: false,
+                 DnsInterceptEnable: false,
+                 DnsIpCollectEnable: false,
+                 AccRouteLabel: "0xffffffffff"
              }
              break
          case "SegmentAccProperties":
              objTemplate = {
                  Segment: 0,
-                 AccIp1: "222.222.222.222"
+                 AccIp1: "222.222.222.222",
+                 BatchRouteFilePath: "",
+                 AccFibType: ""
              }
              break
          case "Link":
