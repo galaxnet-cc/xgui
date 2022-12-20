@@ -88,7 +88,8 @@
                  //RemotePort: 2288,
                  TunnelId: 1,
                  RouteLabel: "0xffffffffff",
-                 IsTcp: false
+                 IsTcp: false,
+                 NoEncryption: false
              }
              break
          case "Tunnel":
