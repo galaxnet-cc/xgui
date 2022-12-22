@@ -1,5 +1,13 @@
 <template>
     <div class="container pt-20">
+        <div class="pb-8">
+            参数说明：
+            <ol>
+                <li>
+                    1. RouteLabelFwdEntry/EdgeRouteLabelFwdEntry表项中，如无需配置Tunnel2，则置为0即可，将在创建时忽略。
+                </li>
+            </ol>
+        </div>
         <h1 class="text-xl py-4">创建对象类型：{{route.params.type}}</h1>
         <div>
             <form>
@@ -119,17 +127,16 @@
          case "EdgeRouteLabelFwdEntry":
              objTemplate = {
                  RouteLabel: "0x100",
-                 // TODO: how to support nexthop tunnel config ???
-                 // 暂时只支持单tunnel配置
                  TunnelId1: 1,
+                 // 为0则忽略。
+                 TunnelId2: 0
              }
              break
          case "RouteLabelFwdEntry":
              objTemplate = {
                  RouteLabel: "0x100",
-                 // TODO: how to support nexthop tunnel config ???
-                 // 暂时只支持单tunnel配置
                  TunnelId1: 1,
+                 TunnelId2: 0
              }
              break
          case "BusinessPolicy":
@@ -246,6 +253,11 @@
                  let tunnel1 = {}
                  tunnel1.TunnelId = objUpdate.TunnelId1
                  tunnels.push(tunnel1)
+                 if (objUpdate.TunnelId2 !== 0) {
+                     let tunnel2 = {}
+                     tunnel2.TunnelId = objUpdate.TunnelId2
+                     tunnels.push(tunnel2)
+                 }
                  objUpdate.NexthopTunnels = tunnels
              }
              break
@@ -255,6 +267,11 @@
                  let tunnel1 = {}
                  tunnel1.TunnelId = objUpdate.TunnelId1
                  tunnels.push(tunnel1)
+                 if (objUpdate.TunnelId2 !== 0) {
+                     let tunnel2 = {}
+                     tunnel2.TunnelId = objUpdate.TunnelId2
+                     tunnels.push(tunnel2)
+                 }
                  objUpdate.NexthopTunnels = tunnels
              }
              break

@@ -1,5 +1,13 @@
 <template>
     <div class="container pt-20">
+        <div class="pb-8">
+            参数说明：
+            <ol>
+                <li>
+                    1. RouteLabelFwdEntry/EdgeRouteLabelFwdEntry表项中，如无需配置Tunnel2，则置为0即可，将在创建时忽略。
+                </li>
+            </ol>
+        </div>
         <h1 class="text-xl py-4">编辑对象类型：{{route.params.type}}，对象Id：{{route.params.id}}</h1>
         <div v-if="loaded">
             <form>
@@ -113,7 +121,10 @@
                  if ("tunnel2" in objUpdate) {
                      let tunnel2 = {}
                      tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
-                     tunnels.push(tunnel2)
+                     // use 0 as special value to remove tunnel in update.
+                     if (tunnel2.TunnelId !== 0) {
+                         tunnels.push(tunnel2)
+                     }
                      delete objUpdate.TunnelId2
                  }
                  objUpdate.NexthopTunnels = tunnels
@@ -129,7 +140,10 @@
                  if ("tunnel2" in objUpdate) {
                      let tunnel2 = {}
                      tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
-                     tunnels.push(tunnel2)
+                     // use 0 as special value to remove tunnel in update.
+                     if (tunnel2.TunnelId !== 0) {
+                         tunnels.push(tunnel2)
+                     }
                      delete objUpdate.TunnelId2
                  }
                  objUpdate.NexthopTunnels = tunnels
