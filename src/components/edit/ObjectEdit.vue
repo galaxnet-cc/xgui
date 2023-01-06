@@ -69,23 +69,27 @@
              delete elemObj.AccIps
              break
          case "EdgeRouteLabelFwdEntry":
+         case "RouteLabelFwdEntry":
              if (elemObj.NexthopTunnels != null) {
                  elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
+                 elemObj.TunnelId1Priority = elemObj.NexthopTunnels[0].TunnelPriority
                  if (elemObj.NexthopTunnels.length > 1) {
                      elemObj.TunnelId2 = elemObj.NexthopTunnels[1].TunnelId
+                     elemObj.TunnelId2Priority = elemObj.NexthopTunnels[0].TunnelPriority
+                 } else {
+                     // support tunnel 2.
+                     elemObj.TunnelId2 = "0"
+                     elemObj.TunnelId2Priority = 90
                  }
                  delete elemObj.NexthopTunnels
              } else {
                  delete elemObj.NexthopTunnels
                  elemObj.TunnelId1 = "1"
+                 elemObj.Tunnel1Priority = 100
+                 // support tunnel 2.
+                 elemObj.TunnelId2 = "0"
+                 elemObj.TunnelId2Priority = 90
              }
-             break
-         case "RouteLabelFwdEntry":
-             elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
-             if (elemObj.NexthopTunnels.length > 1) {
-                 elemObj.TunnelId2 = elemObj.NexthopTunnels[1].TunnelId
-             }
-             delete elemObj.NexthopTunnels
              break
          default:
              // regular object, no need to do special handling.
@@ -112,40 +116,24 @@
              }
              break
          case "EdgeRouteLabelFwdEntry":
-             {
-                 let tunnels = []
-                 let tunnel1 = {}
-                 tunnel1.TunnelId = parseInt(objUpdate.TunnelId1, 10)
-                 tunnels.push(tunnel1)
-                 delete objUpdate.TunnelId1
-                 if ("tunnel2" in objUpdate) {
-                     let tunnel2 = {}
-                     tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
-                     // use 0 as special value to remove tunnel in update.
-                     if (tunnel2.TunnelId !== 0) {
-                         tunnels.push(tunnel2)
-                     }
-                     delete objUpdate.TunnelId2
-                 }
-                 objUpdate.NexthopTunnels = tunnels
-             }
-             break
          case "RouteLabelFwdEntry":
              {
                  let tunnels = []
                  let tunnel1 = {}
                  tunnel1.TunnelId = parseInt(objUpdate.TunnelId1, 10)
+                 tunnel1.TunnelPriority = parseInt(objUpdate.TunnelId1Priority, 10)
                  tunnels.push(tunnel1)
                  delete objUpdate.TunnelId1
-                 if ("tunnel2" in objUpdate) {
-                     let tunnel2 = {}
-                     tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
-                     // use 0 as special value to remove tunnel in update.
-                     if (tunnel2.TunnelId !== 0) {
-                         tunnels.push(tunnel2)
-                     }
-                     delete objUpdate.TunnelId2
+
+                 let tunnel2 = {}
+                 tunnel2.TunnelId = parseInt(objUpdate.TunnelId2, 10)
+                 tunnel2.TunnelPriority = parseInt(objUpdate.TunnelId2Priority, 10)
+                 // use 0 as special value to remove tunnel in update.
+                 if (tunnel2.TunnelId !== 0) {
+                     tunnels.push(tunnel2)
                  }
+                 delete objUpdate.TunnelId2
+
                  objUpdate.NexthopTunnels = tunnels
              }
              break
