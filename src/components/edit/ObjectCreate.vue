@@ -146,10 +146,13 @@
                  SrcAddressWithPrefix: "192.168.88.0/24",
                  DstAddressWithPrefix: "0.0.0.0/0",
                  DirectEnable: true,
+                 OverlayEnable: false,
+                 AccEnable: false,
                  SteeringType: 0,
                  SteeringMode: 0,
                  SteeringInterface: "WAN1",
-                 AppId: 65535
+                 AppId: 65535,
+                 RouteLabel: "0xffffffffff"
              }
              break
          case "OspfSetting":
