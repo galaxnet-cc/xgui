@@ -112,6 +112,7 @@
                  DestPrefix: "8.8.8.8/32",
                  RouteProtocol: "overlay",
                  NexthopType: "overlay",
+                 NexthopIp: "127.0.0.1",
                  RouteLabel: "0x200",
                  AdvertiseEnable: false,
                  IsAcc: false,
