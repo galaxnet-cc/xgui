@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a class="text-xl border-2 border-solid my-8" :href="getCreateHref(route.params.type)">创建</a>
+        <button class="text-white text-xl bg-green-500 hover:bg-green-800 rounded" @click="gotoCreate(route.params.type)">创建</button>
     </div>
     <div class="container max-w-full my-8">
         <table class="table-auto text-left">
@@ -12,8 +12,8 @@
                 <tr class="border-b flex flex-wrap" v-for="obj in objects" :key="obj.ObjectId">
                     <td v-for="(v, k) in obj.Object" class="px-2 py-2">{{ v }}</td>
                     <td class="">
-                        <a class="border-2 border-solid px-2 py-2" :href="getEditHref(route.params.type, obj.ObjectId)">编辑</a>
-                        <button @click="onDelete(route.params.type, obj.ObjectId)" class="border-2 border-solid px-2 py-2">删除</button>
+                        <button class="text-white text-xl bg-green-500 hover:bg-green-800 rounded px-2" @click="gotoEdit(route.params.type, obj.ObjectId)">编辑</button>
+                        <button class="text-white text-xl bg-green-500 hover:bg-green-800 rounded px-2 ml-4" @click="onDelete(route.params.type, obj.ObjectId)">删除</button>
                         <div class="text-red-500">
                             {{ saveResult }}
                         </div>
@@ -29,9 +29,11 @@
  import { getObjects } from "@/api/glx"
  import { deleteObjectById } from "@/api/glx"
  import { useRoute } from 'vue-router'
+ import { useRouter } from 'vue-router'
 
  const objects = ref([])
  const route = useRoute()
+ const router = useRouter()
  const saveResult = ref('')
 
  const loadObjects = async() => {
@@ -41,12 +43,12 @@
 
  loadObjects()
 
- const getEditHref = (objectType, objId) => {
-     return "/edit/" + objectType + "/" + objId
+ const gotoEdit = (objectType, objId) => {
+     router.push("/edit/" + objectType + "/" + objId)
  }
 
- const getCreateHref = (objectType) => {
-     return "/create/" + objectType
+ const gotoCreate = (objectType) => {
+     router.push("/create/" + objectType)
  }
 
  const onDelete = async(objectType, objId) => {

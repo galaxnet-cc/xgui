@@ -20,5 +20,8 @@ export default defineConfig({
   },
   server: {
     cors: corsOptions,
-  }
+  },
+
+  // for serve on non / path.
+  base: './'
 });

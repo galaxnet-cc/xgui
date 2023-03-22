@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import EditView from "../views/EditView.vue";
 import CreateView from "../views/CreateView.vue";
@@ -9,7 +9,8 @@ import ObjectEdit from "../components/edit/ObjectEdit.vue";
 import ObjectCreate from "../components/edit/ObjectCreate.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // We do not deploy gui in a server, so hash based history is enough.
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",
