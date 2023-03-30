@@ -85,7 +85,7 @@
                  Segment: 0,
                  AccIp1: "222.222.222.222",
                  BatchRouteFilePath: "",
-                 AccFibType: ""
+                 BatchRouteFibType: ""
              }
              break
          case "Link":
