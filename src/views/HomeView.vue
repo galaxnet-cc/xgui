@@ -40,7 +40,8 @@
      OspfInterface: "OSPF接口",
      OverlayTrafficLimit: "Overlay流量限速",
      SegmentAccProperties: "网络分段加速属性",
-     DpiSetting: "DPI设置"
+     DpiSetting: "DPI设置",
+     WanAggregateScheduler: "WAN Scheduler设置"
  }
 
  const getToUrl = (objType) => {
