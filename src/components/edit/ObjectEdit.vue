@@ -68,6 +68,22 @@
              elemObj.AccIp1 = elemObj.AccIps[0].Ip4Address
              delete elemObj.AccIps
              break
+         case "SegmentProperties":
+             elemObj.E2EIp1 = elemObj.E2EIps[0].Ip4Address
+             delete elemObj.E2EIps
+             break
+         case "DhcpAndDnsSettings":
+             elemObj.OptionCode1 = elemObj.Options[0].OptionCode
+             elemObj.OptionValue1 = elemObj.Options[0].OptionValue
+             if (elemObj.Options.length > 1) {
+                 elemObj.OptionCode2 = elemObj.Options[1].OptionCode
+                 elemObj.OptionValue2 = elemObj.Options[1].OptionValue
+             } else {
+                 elemObj.OptionCode2 = ""
+                 elemObj.OptionValue2 = ""
+             }
+             delete elemObj.Options
+             break
          case "EdgeRouteLabelFwdEntry":
          case "RouteLabelFwdEntry":
              if (elemObj.NexthopTunnels != null) {
@@ -115,6 +131,15 @@
                  objUpdate.AccIps = accIps
              }
              break
+         case "SegmentProperties":
+             {
+                 let E2EIps = []
+                 let E2EIp1 = {}
+                 E2EIp1.Ip4Address = objUpdate.E2EIp1
+                 E2EIps.push(E2EIp1)
+                 objUpdate.E2EIps = E2EIps
+             }
+             break
          case "EdgeRouteLabelFwdEntry":
          case "RouteLabelFwdEntry":
              {
@@ -135,6 +160,22 @@
                  delete objUpdate.TunnelId2
 
                  objUpdate.NexthopTunnels = tunnels
+             }
+             break
+         case "DhcpAndDnsSettings":
+             {
+                 let options = []
+                 let option1 = {}
+                 option1.OptionCode = parseInt(objUpdate.OptionCode1, 10)
+                 option1.OptionValue = objUpdate.OptionValue1
+                 options.push(option1)
+                 if (objUpdate.OptionCode2 !== "") {
+                     let option2 = {}
+                     option2.OptionCode = parseInt(objUpdate.OptionCode2, 10)
+                     option2.OptionValue = objUpdate.OptionValue2
+                     options.push(option2)
+                 }
+                objUpdate.Options = options
              }
              break
          default:

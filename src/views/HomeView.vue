@@ -35,12 +35,14 @@
      EdgeRoute: "路由",
      BusinessPolicy: "业务策略",
      FirewallRule: "防火墙",
-     HostStackDhcp: "DHCP",
+     DhcpAndDnsSettings: "DHCP&Dns",
      OspfSetting: "OSPF",
      OspfInterface: "OSPF接口",
      OverlayTrafficLimit: "Overlay流量限速",
      SegmentAccProperties: "网络分段加速属性",
+     SegmentProperties: "网络分段属性",
      DpiSetting: "DPI设置",
+     PortMapping: "端口映射",
      WanAggregateScheduler: "WAN Scheduler设置"
  }
 

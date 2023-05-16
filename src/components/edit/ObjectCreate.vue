@@ -85,7 +85,13 @@
                  Segment: 0,
                  AccIp1: "222.222.222.222",
                  BatchRouteFilePath: "",
-                 AccFibType: ""
+                 BatchRouteFibType: ""
+             }
+             break
+         case "SegmentProperties":
+             objTemplate = {
+                 Segment: 1,
+                 E2EIp1: "1.1.1.1/32"
              }
              break
          case "Link":
@@ -195,14 +201,33 @@
                  DpiEnable: true
              }
              break
-         case "HostStackDhcp":
+         case "DhcpAndDnsSettings":
              objTemplate = {
                  Name: "default",
-                 GatewayIP: "192.168.88.1",
                  StartIP: "192.168.88.100",
-                 EndIP: "192.168.88.200",
+                 IPNum: 8,
                  NetMask: "255.255.255.0",
-                 LeaseTime: "1h"
+                 LeaseTime: "1h",
+                 UpstreamDnsServer1: "",
+                 UpstreamDnsServer2: "",
+                 AccDomainList: "",
+                 LocalDomainList: "",
+                 DhcpEnable: false,
+                 LocalDnsServerEnable: false,
+                 OptionCode1: 3,
+                 OptionValue1: "192.168.88.1",
+                 OptionCode2: "",
+                 OptionValue2: ""
+             }
+             break
+         case "PortMapping":
+             objTemplate = {
+                 Interface: "WAN1",
+                 ExternalPort: 7777,
+                 Protocol: "tcp",
+                 Segment: 0,
+                 InternalAddr: "169.254.100.2",
+                 InternalPort: 7777
              }
              break
          default:
@@ -251,6 +276,15 @@
                  objUpdate.AccIps = accIps
              }
              break
+         case "SegmentProperties":
+             {
+                 let E2EIps = []
+                 let E2EIp1 = {}
+                 E2EIp1.Ip4Address = objUpdate.E2EIp1
+                 E2EIps.push(E2EIp1)
+                 objUpdate.E2EIps = E2EIps
+             }
+             break
          case "EdgeRouteLabelFwdEntry":
              {
                  let tunnels = []
@@ -286,6 +320,22 @@
                  area1.AreaId = objUpdate.AreaId1
                  areas.push(area1)
                  objUpdate.Areas = areas
+             }
+             break
+         case "DhcpAndDnsSettings":
+             {
+                 let options = []
+                 let option1 = {}
+                 option1.OptionCode = objUpdate.OptionCode1
+                 option1.OptionValue = objUpdate.OptionValue1
+                 options.push(option1)
+                 if (objUpdate.OptionCode2 !== "") {
+                     let option2 = {}
+                     option2.OptionCode = parseInt(objUpdate.OptionCode2, 10)
+                     option2.OptionValue = objUpdate.OptionValue2
+                     options.push(option2)
+                 }
+                 objUpdate.Options = options
              }
              break
          default:
