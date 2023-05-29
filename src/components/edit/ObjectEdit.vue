@@ -107,6 +107,27 @@
                  elemObj.TunnelId2Priority = 90
              }
              break
+         case "AddrGroup":
+             elemObj.IpAddrWithPrefix1 = elemObj.AddrGroupMembers[0].IpAddrWithPrefix
+             if (elemObj.AddrGroupMembers.length > 1) {
+                 elemObj.IpAddrWithPrefix2 = elemObj.AddrGroupMembers[1].IpAddrWithPrefix
+             } else {
+                 elemObj.IpAddrWithPrefix2 = ""
+             }
+             delete elemObj.AddrGroupMembers
+             break
+         case "PortGroup":
+             elemObj.ProtocolType1 = elemObj.PortGroupMembers[0].ProtocolType
+             elemObj.PortList1 = elemObj.PortGroupMembers[0].PortList
+             if (elemObj.PortGroupMembers.length > 1) {
+                 elemObj.ProtocolType2 = elemObj.PortGroupMembers[1].ProtocolType1
+                 elemObj.PortList2 = elemObj.PortGroupMembers[1].PortList2
+             } else {
+                 elemObj.ProtocolType2 = ""
+                 elemObj.PortList2 = ""
+             }
+             delete elemObj.PortGroupMembers
+             break
          default:
              // regular object, no need to do special handling.
              break
@@ -176,6 +197,36 @@
                      options.push(option2)
                  }
                 objUpdate.Options = options
+             }
+             break
+         case "AddrGroup":
+             {
+                 let members = []
+                 let member1 = {}
+                 member1.IpAddrWithPrefix = objUpdate.IpAddrWithPrefix1
+                 members.push(member1)
+                 if (objUpdate.MemberCode2 !== "") {
+                     let member2 = {}
+                     member2.IpAddrWithPrefix = objUpdate.IpAddrWithPrefix2
+                     members.push(member2)
+                 }
+                objUpdate.AddrGroupMembers = members
+             }
+             break
+         case "PortGroup":
+             {
+                 let members = []
+                 let member1 = {}
+                 member1.ProtocolType = objUpdate.ProtocolType1
+                 member1.PortList = objUpdate.PortList1
+                 members.push(member1)
+                 if (objUpdate.ProtocolType2 !== "") {
+                     let member2 = {}
+                     member2.ProtocolType = objUpdate.ProtocolType2
+                     member2.PortList = objUpdate.PortList2
+                     members.push(member2)
+                 }
+                objUpdate.PortGroupMembers = members
              }
              break
          default:

@@ -44,6 +44,8 @@
      DpiSetting: "DPI设置",
      PortMapping: "端口映射",
      WanAggregateScheduler: "WAN Scheduler设置"
+     AddrGroup: "地址组",
+     PortGroup: "端口组"
  }
 
  const getToUrl = (objType) => {

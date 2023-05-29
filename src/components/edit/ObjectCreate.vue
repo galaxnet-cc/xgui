@@ -230,6 +230,22 @@
                  InternalPort: 7777
              }
              break
+         case "AddrGroup":
+             objTemplate = {
+                 AddrGroupName: "addrGroup1",
+                 IpAddrWithPrefix1: "1.1.1.1/32",
+                 IpAddrWithPrefix2: ""
+             }
+             break
+         case "PortGroup":
+             objTemplate = {
+                 PortGroupName: "portGroup1",
+                 ProtocolType1: "tcp",
+                 PortList1: "7777",
+                 ProtocolType2: "",
+                 PortList2: ""
+             }
+             break
          default:
              break
      }
@@ -336,6 +352,36 @@
                      options.push(option2)
                  }
                  objUpdate.Options = options
+             }
+             break
+         case "AddrGroup":
+             {
+                 let members = []
+                 let member1 = {}
+                 member1.IpAddrWithPrefix = objUpdate.IpAddrWithPrefix1
+                 members.push(member1)
+                 if (objUpdate.IpAddrWithPrefix2 !== "") {
+                     let member2 = {}
+                     member2.IpAddrWithPrefix = objUpdate.IpAddrWithPrefix2
+                     members.push(member2)
+                 }
+                 objUpdate.AddrGroupMembers = members
+             }
+             break
+         case "PortGroup":
+             {
+                 let members = []
+                 let member1 = {}
+                 member1.ProtocolType = objUpdate.ProtocolType1
+                 member1.PortList = objUpdate.PortList1
+                 members.push(member1)
+                 if (objUpdate.ProtocolType2 !== "") {
+                     let member2 = {}
+                     member2.ProtocolType = objUpdate.ProtocolType2
+                     member2.PortList = objUpdate.PortList2
+                     members.push(member2)
+                 }
+                 objUpdate.PortGroupMembers = members
              }
              break
          default:
