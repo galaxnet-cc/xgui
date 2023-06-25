@@ -77,7 +77,9 @@
                  IntEdgeEnable: false,
                  DnsInterceptEnable: false,
                  DnsIpCollectEnable: false,
-                 AccRouteLabel: "0xffffffffff"
+                 AccRouteLabel: "0xffffffffff",
+                 MinQosLevel: 0,
+                 MaxQosLevel: 7,
              }
              break
          case "SegmentAccProperties":
@@ -103,7 +105,8 @@
                  TunnelId: 1,
                  RouteLabel: "0xffffffffff",
                  IsTcp: false,
-                 NoEncryption: false
+                 NoEncryption: false,
+                 QosLevel: 0,
              }
              break
          case "Tunnel":
@@ -159,7 +162,8 @@
                  SteeringMode: 0,
                  SteeringInterface: "WAN1",
                  AppId: 65535,
-                 RouteLabel: "0xffffffffff"
+                 RouteLabel: "0xffffffffff",
+                 QosLevel: 0,
              }
              break
          case "OspfSetting":
