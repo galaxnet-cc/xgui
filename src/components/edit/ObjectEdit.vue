@@ -86,7 +86,7 @@
              break
          case "EdgeRouteLabelFwdEntry":
          case "RouteLabelFwdEntry":
-             if (elemObj.NexthopTunnels != null) {
+             if (elemObj.NexthopTunnels != null && elemObj.NexthopTunnels.length > 0) {
                  elemObj.TunnelId1 = elemObj.NexthopTunnels[0].TunnelId
                  elemObj.TunnelId1Priority = elemObj.NexthopTunnels[0].TunnelPriority
                  if (elemObj.NexthopTunnels.length > 1) {

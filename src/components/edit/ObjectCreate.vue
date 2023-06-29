@@ -163,6 +163,10 @@
                  SteeringInterface: "WAN1",
                  AppId: 65535,
                  RouteLabel: "0xffffffffff",
+                 SrcAddrGroup: "",
+                 DstAddrGroup: "",
+                 SrcPortGroup: "",
+                 DstPortGroup: "",
                  QosLevel: 0,
              }
              break
@@ -188,7 +192,11 @@
                  DstAddressWithPrefix: "0.0.0.0/0",
                  L4Protocol: 0,
                  Action: "Deny",
-                 AppId: 65535
+                 AppId: 65535,
+                 SrcAddrGroup: "",
+                 DstAddrGroup: "",
+                 SrcPortGroup: "",
+                 DstPortGroup: "",
              }
              break
          case "OverlayTrafficLimit":
