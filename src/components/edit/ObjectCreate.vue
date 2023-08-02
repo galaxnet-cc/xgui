@@ -258,7 +258,7 @@ const initObjectTemplate = () => {
                 Name: "default",
                 VIP: "",
                 Priority: 255,
-                Bridge: "loop0",
+                Bridge: "loop1",
                 VRID: 1,
                 AdvInterval: 1,
                 Unicast: false,
