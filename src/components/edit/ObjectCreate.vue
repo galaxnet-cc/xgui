@@ -252,7 +252,7 @@ const initObjectTemplate = () => {
                 PortList2: ""
             }
             break
-        case "VRRP":
+        case "VRRPSetting":
             objTemplate = {
                 Segment: 0,
                 Name: "default",

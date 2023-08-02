@@ -46,7 +46,7 @@
      WanAggregateScheduler: "WAN Scheduler设置",
      AddrGroup: "地址组",
      PortGroup: "端口组",
-     VRRP: "VRRP"
+     VRRPSetting: "VRRP"
  }
 
  const getToUrl = (objType) => {
