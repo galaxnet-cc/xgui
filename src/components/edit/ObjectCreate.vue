@@ -256,7 +256,7 @@ const initObjectTemplate = () => {
             objTemplate = {
                 Segment: 0,
                 Name: "default",
-                IP: "",
+                VIP: "",
                 Priority: 255,
                 Bridge: "loop0",
                 VRID: 1,
