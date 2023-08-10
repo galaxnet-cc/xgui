@@ -257,11 +257,12 @@ const initObjectTemplate = () => {
                 Segment: 0,
                 Name: "default",
                 VIP: "",
-                Priority: 255,
-                Bridge: "loop1",
+                Priority: 254,
+                Bridge: "default",
                 VRID: 1,
                 AdvInterval: 1,
                 Unicast: false,
+                PeerAddress: ""
             }
             break
         default:
