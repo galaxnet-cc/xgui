@@ -254,12 +254,11 @@ const initObjectTemplate = () => {
             break
         case "VRRPSetting":
             objTemplate = {
+                VRID: 1,
                 Segment: 0,
-                Name: "default",
                 VIP: "",
                 Priority: 254,
                 Bridge: "default",
-                VRID: 1,
                 AdvInterval: 1,
                 Unicast: false,
                 PeerAddress: ""
