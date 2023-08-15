@@ -53,6 +53,7 @@ const initObjectTemplate = () => {
             objTemplate = {
                 Name: "bridge2",
                 BviEnable: true,
+                Mtu: 1500,
                 BviIpAddrWithPrefix: "192.168.2.1/24"
             }
             break
@@ -161,6 +162,10 @@ const initObjectTemplate = () => {
                 SrcPortGroup: "",
                 DstPortGroup: "",
                 QosLevel: 0,
+                RateLimitEnable: false,
+                UpRateLimit: 0,
+                DownRateLimit: 0,
+                RateBurst: 0
             }
             break
         case "OspfSetting":
@@ -213,8 +218,10 @@ const initObjectTemplate = () => {
                 IPNum: 8,
                 NetMask: "255.255.255.0",
                 LeaseTime: "1h",
-                UpstreamDnsServer1: "",
-                UpstreamDnsServer2: "",
+                AccUpstreamDnsServer1: "",
+                AccUpstreamDnsServer2: "",
+                LocalUpstreamDnsServer1: "",
+                LocalUpstreamDnsServer2: "",
                 AccDomainList: "",
                 LocalDomainList: "",
                 DhcpEnable: false,
