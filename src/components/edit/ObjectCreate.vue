@@ -263,6 +263,27 @@ const initObjectTemplate = () => {
                 PeerAddress: ""
             }
             break
+        case "Probe":
+            objTemplate = {
+                Name: "probe1",
+                Type: "WAN",
+                IfName: "WAN1",
+                Mode: "CMD_PING",
+                DstAddr: "1.1.1.1",
+                DstPort: 1111,
+                Interval: 2,
+                Timeout: 1,
+                FailThreshold: 5,
+                OkThreshold: 10
+            }
+            break
+        case "AccIpBinding":
+            objTemplate = {
+                AccIp: "11.11.11.22",
+                OutIp1: "111.111.111.111",
+                OutIp2: ""
+            }
+            break
         default:
             break
     }
@@ -399,6 +420,34 @@ const onSubmit = async () => {
                     members.push(member2)
                 }
                 objUpdate.PortGroupMembers = members
+            }
+            break
+        case "AccIpBinding":
+            {
+                let members = []
+                let member1 = {}
+                member1.IpAddr = objUpdate.OutIp1
+                members.push(member1)
+                if (objUpdate.OutIp2 !== "") {
+                    let member2 = {}
+                    member2.IpAddr = objUpdate.OutIp2
+                    members.push(member2)
+                }
+                objUpdate.OutIps = members
+            }
+            break
+        case "LogicalInterface":
+            {
+                let members = []
+                let member1 = {}
+                member1.IpAddr = objUpdate.AdditionalIp1
+                members.push(member1)
+                if (objUpdate.AdditionalIp2 !== "") {
+                    let member2 = {}
+                    member2.IpAddr = objUpdate.AdditionalIp2
+                    members.push(member2)
+                }
+                objUpdate.AdditionalIps = members
             }
             break
         default:

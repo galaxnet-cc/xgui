@@ -46,7 +46,9 @@
      WanAggregateScheduler: "WAN Scheduler设置",
      AddrGroup: "地址组",
      PortGroup: "端口组",
-     VRRPSetting: "VRRP"
+     VRRPSetting: "VRRP",
+     Probe: "探测",
+     AccIpBinding: "加速ip绑定出口ip",
  }
 
  const getToUrl = (objType) => {

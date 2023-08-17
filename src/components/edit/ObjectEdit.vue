@@ -128,6 +128,29 @@
              }
              delete elemObj.PortGroupMembers
              break
+         case "AccIpBinding":
+             elemObj.OutIp1 = elemObj.OutIps[0].IpAddr
+             if (elemObj.OutIps.length > 1) {
+                 elemObj.OutIp2 = elemObj.OutIps[1].IpAddr
+             } else {
+                 elemObj.OutIp2 = ""
+             }
+             delete elemObj.OutIps
+             break
+         case "LogicalInterface":
+             if (elemObj.AdditionalIps != null && elemObj.AdditionalIps.length > 0) {
+                 elemObj.AdditionalIp1 = elemObj.AdditionalIps[0].IpAddr
+                 if (elemObj.AdditionalIps.length > 1) {
+                     elemObj.AdditionalIp2 = elemObj.AdditionalIps[1].IpAddr
+                 } else {
+                     elemObj.AdditionalIp2 = ""
+                 }
+             } else {
+                 elemObj.AdditionalIp1 = ""
+                 elemObj.AdditionalIp2 = ""
+             }
+             delete elemObj.AdditionalIps
+             break
          default:
              // regular object, no need to do special handling.
              break
@@ -227,6 +250,36 @@
                      members.push(member2)
                  }
                 objUpdate.PortGroupMembers = members
+             }
+             break
+         case "AccIpBinding":
+             {
+                 let members = []
+                 let member1 = {}
+                 member1.IpAddr = objUpdate.OutIp1
+                 members.push(member1)
+                 if (objUpdate.OutIp2 !== "") {
+                     let member2 = {}
+                     member2.IpAddr = objUpdate.OutIp2
+                     members.push(member2)
+                 }
+                objUpdate.OutIps = members
+             }
+             break
+         case "LogicalInterface":
+             {
+                 let members = []
+                 if (objUpdate.AdditionalIp1 !== "") {
+                     let member1 = {}
+                     member1.IpAddr = objUpdate.AdditionalIp1
+                     members.push(member1)
+                 }
+                 if (objUpdate.AdditionalIp2 !== "") {
+                     let member2 = {}
+                     member2.IpAddr = objUpdate.AdditionalIp2
+                     members.push(member2)
+                 }
+                objUpdate.AdditionalIps = members
              }
              break
          default:
