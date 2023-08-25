@@ -54,7 +54,8 @@ const initObjectTemplate = () => {
                 Name: "bridge2",
                 BviEnable: true,
                 Mtu: 1500,
-                BviIpAddrWithPrefix: "192.168.2.1/24"
+                BviIpAddrWithPrefix: "192.168.2.1/24",
+                BviIp6AddrWithPrefix: ""
             }
             break
         case "L3SubInterface":
