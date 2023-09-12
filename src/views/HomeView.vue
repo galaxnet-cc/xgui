@@ -22,6 +22,7 @@
 
 <script setup>
  const objects = {
+     GlobalCfg: "全局配置",
      PhysicalInterface: "物理接口",
      L3SubInterface: "三层子接口",
      LogicalInterface: "逻辑接口",
