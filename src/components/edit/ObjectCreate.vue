@@ -209,7 +209,8 @@ const initObjectTemplate = () => {
         case "DpiSetting":
             objTemplate = {
                 Name: "default",
-                DpiEnable: true
+                DpiEnable: true,
+                DpiStandaloneMode: false
             }
             break
         case "DhcpAndDnsSettings":
