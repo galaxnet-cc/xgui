@@ -108,6 +108,10 @@ const initObjectTemplate = () => {
         case "Tunnel":
             objTemplate = {
                 TunnelId: 1,
+                MldEnable: false,
+                PassiveMldEnable: false,
+                FecEnable: false,
+                PassiveFecEnable: false,
             }
             break
         case "EdgeRoute":
