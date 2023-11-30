@@ -73,7 +73,7 @@ const initObjectTemplate = () => {
                 IntEdgeEnable: false,
                 DnsInterceptEnable: false,
                 DnsIpCollectEnable: false,
-                AccRouteLabel: "0xffffffffff",
+                AccRouteLabel: "0xfffffffffff",
                 MinQosLevel: 0,
                 MaxQosLevel: 7,
             }
