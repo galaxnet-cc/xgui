@@ -297,6 +297,22 @@ const initObjectTemplate = () => {
                 OutIp2: ""
             }
             break
+        case "CustomAccRegion":
+            objTemplate = {
+                Segment: 0,
+                Name: "default",
+                AccRouteLabel: "",
+            }
+            break
+        case "CustomDnsAccRegion":
+            objTemplate = {
+                Name: "default1",
+                AccDomainList: "",
+                AccUpstreamDnsServer1: "",
+                AccUpstreamDnsServer2: "",
+                CustomRegion: ""
+            }
+            break
         default:
             break
     }
