@@ -173,17 +173,11 @@ const initObjectTemplate = () => {
                 RateBurst: 0
             }
             break
-        case "OspfSetting":
+        case "DynamicRoutingSetting":
             objTemplate = {
                 Segment: 0,
-                OverlayAdvertiseEnable: true,
-                AreaId1: 1
-            }
-            break
-        case "OspfInterface":
-            objTemplate = {
-                Interface: "GE1",
-                AreaId: 1
+                EnableOSPF: true,
+                EnableBGP: true 
             }
             break
         case "FirewallRule":
