@@ -281,7 +281,8 @@ const initObjectTemplate = () => {
                 Interval: 2,
                 Timeout: 1,
                 FailThreshold: 5,
-                OkThreshold: 10
+                OkThreshold: 10,
+                ProbeOnly: false
             }
             break
         case "AccIpBinding":
@@ -305,6 +306,16 @@ const initObjectTemplate = () => {
                 AccUpstreamDnsServer1: "",
                 AccUpstreamDnsServer2: "",
                 CustomRegion: ""
+            }
+            break
+        case "FlowStatsSetting":
+            objTemplate = {
+                Name: "default",
+                Segment: 0,
+                CollectorAddress: "169.254.100.2",
+                CollectorSrcAddress: "169.254.100.1",
+                ActiveInterval: 15,
+                AgeInterval: 120
             }
             break
         default:

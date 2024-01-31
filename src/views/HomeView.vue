@@ -50,7 +50,8 @@
      Probe: "探测",
      AccIpBinding: "加速ip绑定出口ip",
      CustomAccRegion: "自定义加速区域",
-     CustomDnsAccRegion: "自定义dns加速区域"
+     CustomDnsAccRegion: "自定义dns加速区域",
+     FlowStatsSetting: "FlowStats"
  }
 
  const getToUrl = (objType) => {
