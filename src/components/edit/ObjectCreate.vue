@@ -112,6 +112,7 @@ const initObjectTemplate = () => {
                 PassiveMldEnable: false,
                 FecEnable: false,
                 PassiveFecEnable: false,
+                PassiveFlowLinkLearningEnable: false,
             }
             break
         case "EdgeRoute":
