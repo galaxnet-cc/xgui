@@ -103,6 +103,9 @@ const initObjectTemplate = () => {
                 IsTcp: false,
                 NoEncryption: false,
                 QosLevel: 0,
+                // 2406: add new create fields.
+                Priority: 0,
+                ActiveBfdInterval: 0,
             }
             break
         case "Tunnel":
