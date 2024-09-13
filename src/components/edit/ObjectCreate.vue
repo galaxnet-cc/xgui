@@ -128,6 +128,7 @@ const initObjectTemplate = () => {
                 RouteLabel: "0x200",
                 AdvertiseEnable: false,
                 IsAcc: false,
+                IsInternet: false,
                 IsAccReverse: false,
             }
             break
@@ -161,6 +162,7 @@ const initObjectTemplate = () => {
                 DirectEnable: true,
                 OverlayEnable: false,
                 AccEnable: false,
+                InternetEnable: false,
                 SteeringType: 0,
                 SteeringMode: 0,
                 SteeringInterface: "WAN1",
