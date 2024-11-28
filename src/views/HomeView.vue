@@ -41,6 +41,8 @@
      OverlayTrafficLimit: "Overlay流量限速",
      SegmentAccProperties: "网络分段加速属性",
      SegmentProperties: "网络分段属性",
+     SegmentTproxyListener: "网络分段透明代理监听",
+     SegmentTproxyCfg: "网络分段透明代理配置",
      DpiSetting: "DPI设置",
      PortMapping: "端口映射",
      WanAggregateScheduler: "WAN Scheduler设置",

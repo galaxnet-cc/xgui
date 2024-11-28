@@ -92,6 +92,17 @@ const initObjectTemplate = () => {
                 E2EIp1: "1.1.1.1/32"
             }
             break
+        case "SegmentTproxyListener":
+            objTemplate = {
+                Segment: 0,
+                Port: 443,
+            }
+            break
+        case "SegmentTproxyCfg":
+            objTemplate = {
+                Segment: 0,
+            }
+            break
         case "Link":
             objTemplate = {
                 LinkId: 1,
