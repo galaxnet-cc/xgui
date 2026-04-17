@@ -335,6 +335,12 @@ const initObjectTemplate = () => {
                 AgeInterval: 120
             }
             break
+        case "LightglxIpPool":
+            objTemplate = {
+                PoolId: 1,
+                Prefix: "10.99.0.0/24"
+            }
+            break
         default:
             break
     }

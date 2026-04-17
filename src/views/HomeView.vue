@@ -53,7 +53,8 @@
      AccIpBinding: "加速ip绑定出口ip",
      CustomAccRegion: "自定义加速区域",
      CustomDnsAccRegion: "自定义dns加速区域",
-     FlowStatsSetting: "FlowStats"
+     FlowStatsSetting: "FlowStats",
+     LightglxIpPool: "LightGLX IP Pool"
  }
 
  const getToUrl = (objType) => {
